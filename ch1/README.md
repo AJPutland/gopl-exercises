@@ -52,18 +52,46 @@
 
 - for loop can also iterate over a rance of values from a data type like a string or slice `for i, arg := range [value] {}` (i is index of arg in the range)
 
-
 ## FMT package
 
-- fmt package provides I/O operations and string formatting
+- fmt package provides formatted I/O operations and string formatting
 
 ## OS package
 
 - os package provides functions and other values for dealing with the operating system in a platform-independent fashion
 - variable Args contains command-line arguments ( when referenced outside of the package os.Args)
 - os.Args is a slice of strings with [0] being the name of the command itself
+- os.File is the main type here, Stdin, stdout and Stderr are variable which are all open files pointing to the standard input, output and error. os.File implements io.Reader and io.Writer
+- os.Open returns the file and an error
+- os.ReadFile is what ioutil used to implement (reads a file in its entirety returning a byte slice)
+- Under the hood bufio.Scanner, os.ReadFile and os.WriteFile use the Read and Write methods of *os.File
 
-## Strings package 
+## Strings package
 
 - provides simple functions to manipulate strings
 - Join function is a simpler and more efficient for concatenating strings than using manual string concatenation (more functional as well)
+- Split splits a string into a slice of substrings (opposite of Join)
+- Builder provides a string builder (not as efficient as using Join)
+
+## Bufio package
+
+- implements buffered I/O, wrapping an io.Reader or io.Writer object
+- Provides a Scanner type
+
+## image package
+
+- provides basic 2d imagery, including GIFS, colors, etc
+- uses io.Reader and Writer interfaces
+
+## net package
+
+- provides a portable interface for network I/O and anything internet related
+- http provides GET function to get a resource over http
+- http provides handlerFunc and listenAndServer functions to act as a server
+- http.Request is the struct which is passed to the handler func
+- http.ResponseWriter is a Io.Writer which the handler func uses to write the response back
+
+## io package
+
+- provides basic IO, including reader and writer interfaces
+- io.Copy copies all of src to dst without requiring a buffer (reader interface to writer interface)
